@@ -3,7 +3,7 @@
 import sys
 
 import dictionary
-
+import graph
 
 def parse():
     try:
@@ -18,10 +18,21 @@ def parse():
 
 def main():
     dict_file, start_word, stop_word = parse()
-    d = dictionary.Dictionary.build(dict_file)
-    import pdb
-    pdb.set_trace()
 
+    if len(start_word) != len(stop_word):
+        print("Start and stop words differ in lengths, no common path")
+        raise SystemExit(0)
+
+
+    d = dictionary.Dictionary.build(dict_file)
+    g = graph.Graph(d)
+    path = g.bfs(start_word, stop_word)
+
+    if path is None:
+        print("There is no path between words {} and {}".format(
+            start_word, stop_word))
+    else:
+        print("Path between words: {}".format("->".join(path)))
 
 if __name__ == "__main__":
     main()

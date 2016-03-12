@@ -12,6 +12,11 @@ class Dictionary(object):
         for morphed_word in self.morph_word(word):
             for corresponding_word in self._dictionary[morphed_word]:
                 result.add(corresponding_word)
+        try:
+            result.remove(word)
+        except KeyError:
+            pass
+
         return result
 
     @staticmethod
@@ -25,7 +30,7 @@ class Dictionary(object):
             try:
                 with open(dict_file, 'r') as f:
                     for line in f:
-                        yield line
+                        yield line.lower().strip('\n\t')
             except IOError as e:
                 raise SystemExit(e)
 
