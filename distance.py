@@ -77,5 +77,6 @@ def main():
     else:
         print("One possible path between words: {}".format("->".join(path)))
 
+
 if __name__ == "__main__":
     main()

@@ -42,3 +42,13 @@ class DictionaryTests(unittest.TestCase):
 
         neighbours = self.dictionary.get_corresponding_words('marek')
         self.assertEqual(set(words1), set(neighbours))
+
+    def test_is_real_word(self):
+
+        word = 'marek'
+        self.dictionary.insert(word)
+
+        self.assertTrue(self.dictionary.is_real_word(word))
+
+        word2 = 'darek'
+        self.assertFalse(self.dictionary.is_real_word(word2))
