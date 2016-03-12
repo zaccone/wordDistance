@@ -18,6 +18,9 @@ class Dictionary(object):
     Thanks to that it's relatively easy finding all corresponding words
     that are 'one letter' away.
 
+    Keep in mind that Dictionary objects keeps all words as a lowercase
+    only and as a principle the words comparisions are case insensitive.
+
     """
 
     def __init__(self):
@@ -75,6 +78,7 @@ class Dictionary(object):
     @staticmethod
     def morph_word(word):
         """Generate morphed combinations of the word
+
         Return a generator that for each letter replaces it with a wildcard '_'
         sign and yields new word to a caller.
 
@@ -94,6 +98,7 @@ class Dictionary(object):
     @staticmethod
     def build(dict_file):
         """Build a dictionary from a file
+
         :param: dict_file: filename of the input filename
         :type: string
 
