@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import sys
 
@@ -18,6 +18,14 @@ def parse():
 
 
 def check_word_lengths(start_word, stop_word):
+    """Check if the both words are of equal length.
+
+    :param start_word: Starting word
+    :param stop_word: Stopping word
+    :returns: True if lengths are equal, False otherwise
+    :rtype: bool
+
+    """
     if len(start_word) != len(stop_word):
         print("Words {} and {} are of different length".format(
             start_word, stop_word))
@@ -26,7 +34,21 @@ def check_word_lengths(start_word, stop_word):
 
 
 def check_words(dictionary_, start_word, stop_word):
+    """Check if both words are defined in the dictionary.__doc__
 
+    If either word is not found, an appropriate warning will be printed
+    to stdout
+
+    :param dictionary_ : dictionary object
+    :type: Dictionary
+    :param start_word: Starting word
+    :type: string
+    :param stop_word: Stopping word
+    :type: string
+    :returns: True if both words are defined, False othwerise
+    :rtype: bool
+
+    """
     if dictionary_.is_real_word(start_word) is False:
         print("Word {} not found in the dictionary".format(start_word))
         return False
