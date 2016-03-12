@@ -7,15 +7,20 @@ class Dictionary(object):
             wordset = self._dictionary.setdefault(morphed_word, set([]))
             wordset.add(word)
 
+    def is_real_word(self, word):
+        for morphed_word in self.morph_word(word):
+            if (morphed_word not in self._dictionary or
+                    word not in self._dictionary[morphed_word]):
+                    return False
+        return True
+
     def get_corresponding_words(self, word):
         result = set([])
         for morphed_word in self.morph_word(word):
+            if self.is_real_word(word) is False:
+                break
             for corresponding_word in self._dictionary[morphed_word]:
                 result.add(corresponding_word)
-        try:
-            result.remove(word)
-        except KeyError:
-            pass
 
         return result
 

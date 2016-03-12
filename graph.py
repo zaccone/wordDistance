@@ -30,3 +30,4 @@ class Graph(object):
                 self.word_to_path[word] = path.Path(word, node)
 
             q.extend(list(words_distance_awa))
+        return None
